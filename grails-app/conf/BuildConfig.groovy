@@ -36,5 +36,27 @@ grails.project.dependency.resolution = {
 //              ":rest-client-builder:1.0.3") {
 //            export = false
 //        }
+        test(":code-coverage:1.2.5", ":codenarc:0.17")
+    }
+}
+
+coverage {
+    xml = true
+}
+
+codenarc {
+    processTestUnit = false
+    processTestIntegration = false
+    propertiesFile = 'codenarc.properties'
+    ruleSetFiles = "file:grails-app/conf/tricharts-domain-codenarc.groovy"
+    reports = {
+        TrichartsDomainXmlReport('xml') {                    // The report name "MyXmlReport" is user-defined; Report type is 'xml'
+            outputFile = 'target/codenarc.xml'  // Set the 'outputFile' property of the (XML) Report
+            title = 'Tricharts Domain'             // Set the 'title' property of the (XML) Report
+        }
+        TrichartsDomainHtmlReport('html') {                    // The report name "MyXmlReport" is user-defined; Report type is 'xml'
+            outputFile = 'target/codenarc.html'  // Set the 'outputFile' property of the (XML) Report
+            title = 'Tricharts Domain'             // Set the 'title' property of the (XML) Report
+        }
     }
 }
